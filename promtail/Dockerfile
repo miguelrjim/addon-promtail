@@ -1,17 +1,15 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:6.2.7
-ARG BUILD_ARCH=amd64
-
 # https://github.com/mdegat01/promtail-journal/releases
 #FROM ghcr.io/mdegat01/promtail-journal/${BUILD_ARCH}:1.6.0 as build_promtail
 
 # https://github.com/hassio-addons/addon-debian-base/releases
 # hadolint ignore=DL3006
+ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-ARG BUILD_ARCH=amd64
 # https://github.com/mikefarah/yq/releases
 ARG YQ_VERSION=4.27.3
 
+ARG BUILD_ARCH
 # Add yq and tzdata (required for the timestamp stage)
 RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -t bullseye-backports -qy libsystemd-dev
@@ -48,7 +46,6 @@ COPY rootfs /
 WORKDIR /data/promtail
 
 # Build arguments
-ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_DESCRIPTION
 ARG BUILD_NAME

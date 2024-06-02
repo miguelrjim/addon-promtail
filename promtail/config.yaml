@@ -1,6 +1,6 @@
 ---
 name: Promtail
-url: https://github.com/mdegat01/addon-promtail
+url: https://github.com/miguelrjim/addon-promtail
 version: edge
 slug: promtail
 arch:
